@@ -9,7 +9,7 @@ int main() {
 
     stack<int> s;
 
-    while (n--) {
+    for(int i =0; i< n; i++) {
         string cmd;
         cin >> cmd;
         if (cmd == "push") {
