@@ -4,6 +4,8 @@
         "queue": "cpp",
         "algorithm": "cpp",
         "iostream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "string": "cpp",
+        "random": "cpp"
     }
 }
