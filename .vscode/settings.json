@@ -6,6 +6,9 @@
         "iostream": "cpp",
         "ostream": "cpp",
         "string": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "xstring": "cpp",
+        "utility": "cpp",
+        "cmath": "cpp"
     }
 }
