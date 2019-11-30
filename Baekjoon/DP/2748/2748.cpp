@@ -1,21 +1,7 @@
 #include <iostream>
-
 using namespace std;
-
-int memo[100];
-int dp[100];
-int Fibo(int N)
-{
-    dp[1] = 0;
-    dp[2] = 1;
-    for (int i = 3; i <= N; i++)
-    {
-        dp[i] = dp[i - 1] + dp[i - 2];
-    }
-    return dp[N];
-}
-/*Top Down
-int Fibo(int N)
+long long memo[100];
+long long Fibo(int N)
 {
     if (N == 1)
     {
@@ -35,10 +21,10 @@ int Fibo(int N)
         return memo[N];
     }
 }
-*/
 int main()
 {
-
-    cout << Fibo(10);
+    int num;
+    cin >> num;
+    cout << Fibo(num + 1);
     return 0;
 }
