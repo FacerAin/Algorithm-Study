@@ -12,8 +12,23 @@ int main()
     bool tag = false;
     for (int i = 0; i < slen; i++)
     {
-
-        if (s[i] == ' ' && tag == false)
+        //Ãâ·Â
+        if (s[i] == '<')
+        {
+            tag = true;
+            reverse(subs.begin(), subs.end());
+            cout << subs;
+            cout << "<";
+            subs.clear();
+        }
+        else if (s[i] == '>')
+        {
+            tag = false;
+            cout << subs;
+            cout << ">";
+            subs.clear();
+        }
+        else if (s[i] == ' ' && tag == false)
         {
             reverse(subs.begin(), subs.end());
             cout << subs;
@@ -23,19 +38,6 @@ int main()
         else
         {
             subs += s[i];
-            if (s[i] == '<')
-            {
-                reverse(subs.begin(), subs.end());
-                cout << subs;
-                tag = true;
-            }
-
-            if (s[i] == '>')
-            {
-                tag = false;
-                cout << subs;
-                subs.clear();
-            }
         }
     }
     reverse(subs.begin(), subs.end());
