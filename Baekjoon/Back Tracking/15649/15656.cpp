@@ -1,16 +1,19 @@
 /*
-15651번 N과 M(3)
+15656번 N과 M(7)
 */
 #include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 int N, M;
 bool check[9] = {
     false,
 };
 int lst[8];
-
+vector<int> v;
 void dfs(int cnt)
 {
+
      if (cnt == M)
      {
           for (int i = 0; i < M; i++)
@@ -21,11 +24,11 @@ void dfs(int cnt)
      }
      else
      {
-          for (int i = 1; i <= N; i++)
+          for (int i = 0; i < N; i++)
           {
 
                check[i] = true;
-               lst[cnt] = i;
+               lst[cnt] = v[i];
                dfs(cnt + 1);
                check[i] = false;
           }
@@ -33,7 +36,15 @@ void dfs(int cnt)
 }
 int main()
 {
+
+     int num;
      cin >> N >> M;
+     for (int i = 0; i < N; i++)
+     {
+          cin >> num;
+          v.push_back(num);
+          sort(v.begin(), v.end());
+     }
      dfs(0);
      return 0;
 }

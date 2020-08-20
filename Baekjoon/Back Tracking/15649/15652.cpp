@@ -1,5 +1,5 @@
 /*
-15651번 N과 M(3)
+15652번 N과 M(4)
 */
 #include <iostream>
 using namespace std;
@@ -23,11 +23,13 @@ void dfs(int cnt)
      {
           for (int i = 1; i <= N; i++)
           {
-
-               check[i] = true;
-               lst[cnt] = i;
-               dfs(cnt + 1);
-               check[i] = false;
+               if (cnt < 1 || lst[cnt - 1] <= i)
+               {
+                    check[i] = true;
+                    lst[cnt] = i;
+                    dfs(cnt + 1);
+                    check[i] = false;
+               }
           }
      }
 }
