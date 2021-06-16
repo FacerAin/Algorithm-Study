@@ -1,8 +1,10 @@
 //16236번 아기상어
+//급하게 풀었다! 리팩토링하자!
 #include <iostream>
 #include <queue>
 #include <utility>
 #include <vector>
+#include <algorithm>
 using namespace std;
 int N;
 int map[25][25];
@@ -19,6 +21,13 @@ int min_len = 999;
 
 vector<pair<int,int>> fish_v;
 queue<pair<int,int>> q;
+
+bool compare(pair <int, int> a, pair<int,int> b){
+	if(a.first == b.first){
+		return a.second < b.second;
+	}
+	return a.first < b.first;
+}
 
 bool isInside(int a, int b){
     return (a >= 0 && a < N) && (b >=0 && b < N);
@@ -55,22 +64,6 @@ void BFS(){
 						fish_v.push_back(pair<int,int>(next_y,next_x));
 					}
 					
-					
-					
-					
-					exp++;
-					map[next_y][next_x] = 0;
-					result += check[next_y][next_x];
-					q = queue<pair<int,int>>();
-					ClearCheck();
-
-					if(exp >= level){//레벨업
-						exp = 0;
-						level++;
-						cout << level <<  endl;
-					}
-					q.push(pair<int,int>(next_y,next_x));
-					break;
 				}
 				
 				q.push(pair<int,int>(next_y,next_x));
@@ -86,15 +79,37 @@ int main(){
 		for(int j = 0; j < N; j++){
 			cin >> map[i][j];
 			if(map[i][j] == 9){
-				cout << 999;
 				q.push(pair<int,int>(i,j));
 				map[i][j] = 0;
 			}
 			
 		}
 	}
-	BFS();
-	cout << result;
+	while(1){
+		BFS();
+		if(fish_v.size() == 0){
+			cout << result;
+			return 0;
+		}else{
+			sort(fish_v.begin(),fish_v.end());
+			int y = fish_v[0].first;
+			int x = fish_v[0].second;
+			exp++;
+			map[y][x] = 0;
+			result += check[y][x];
+			q = queue<pair<int,int>>();
+			fish_v = vector<pair<int,int>>();
+			ClearCheck();
+			
+			if(exp >= level){//레벨업
+					exp = 0;
+					level++;
+			}
+				q.push(pair<int,int>(y,x));
+			
+		}
+	}
+
 	
 	
 	
